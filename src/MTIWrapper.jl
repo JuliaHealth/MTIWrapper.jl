@@ -56,25 +56,22 @@ module MTIWrapper
 
 """
     function install_web_api(root_dir)
-
-Downloads MTI java jar to specified directory
+Installs MTI Java jar to specified location
 """
 function install_web_api(root_dir)
 
     if !isdir(root_dir)
         mkdir(root_dir)
     else
-        rmdir(root_dir, recursive=true, force=true)
+        rm(root_dir, recursive = true, force = true)
         mkdir(root_dir)
     end
 
-    cd(root_dir)
 
     println("Dowloading fresh copy of sources")
     # get sources and expand
-    download("https://ii.nlm.nih.gov/Web_API/SKR_Web_API_V2_3.jar", "./SKR_Web_API_V2_3.jar")
-    run(`java sun.tools.jar.Main xf SKR_Web_API_V2_3.jar`)
-    
+    download("https://ii.nlm.nih.gov/Web_API/SKR_Web_API_V2_3.jar", "$root_dir/SKR_Web_API_V2_3.jar")
+    run(`java sun.tools.jar.Main xf $root_dir/SKR_Web_API_V2_3.jar`)
 
     # compile
     cd("SKR_Web_API_V2_3")
@@ -84,12 +81,12 @@ function install_web_api(root_dir)
 end
 
 """
-    function mti_batch_query(mti_dir, email, username, password, in_file, out_file)
-Submit a batch query to MTI. Use `abstracts_to_request_file` to create `file_in`
+    function mti_batch_query(mti_java_dir, email, username, password, in_file, out_file)
+Send a batch query to MTI. Use function `abstracts_to_request_file` to generate `in_file`
 """
-function mti_batch_query(mti_dir, email, username, password, in_file, out_file)
-    src_dir = dirname(@__FILE__)
-    run(`./generic_batch.sh $mti_dir, $email $username $password $in_file $out_file`)
+function mti_batch_query(mti_java_dir, email, username, password, in_file, out_file)
+    cwd= dirname(@__FILE__)
+    run(`$cwd/generic_batch.sh $mti_java_dir $email $username $password $in_file $out_file`)
 end
 
 
@@ -127,42 +124,6 @@ function abstracts_to_request_file(df, out_file; uid_column::Symbol = :pmid, abs
 
 end
 
-# """
-#     abs_to_request_file(pub_year)
-
-# Write all abstracts in a year, to a file to be used for MTI batch query.
-# The format is:
-
-# UI - pmid
-# AB - abstract_text
-# """
-# function abstracts_to_request_file(db, pub_year, out_file;
-#                                    local_medline = false,
-#                                    uid_column::Symbol = :pmid)
-
-#     abs_sel = abstracts_by_year(db, pub_year; local_medline = local_medline, uid_str = string(uid_column))
-
-#     #call MTI
-#     open(out_file, "w") do file
-
-#         for i=1:size(abs_sel)[1]
-#             uid = abs_sel[i, uid_column]
-#             abstract_text = abs_sel[i, :abstract_text]
-
-#             if isna(abstract_text)
-#                 println( "Skipping empty abstract for PMID: ", uid)
-#                 continue
-#             end
-
-#             # convert to ascii - all unicode caracters to " "
-#             abstract_ascii = replace(abstract_text, r"[^\u0000-\u007F]", " ")
-#             write(file, "UI  - $uid \n")
-#             write(file, "AB  - $abstract_ascii \n \n")
-#         end
-#     end
-
-# end
-
 # function parse_and_save_MoD(file, db; num_cols = 9, num_cols_prc = 4, append_results=false, verbose= false)
 #     mesh_lines, prc_lines = parse_result_file(file, num_cols, num_cols_prc)
 #     println("Saving ", length(mesh_lines), " mesh entries")
@@ -178,25 +139,25 @@ end
 # end
 
 
-# function parse_result_file(file, num_cols = 8, num_cols_prc = 10000)
-#     mesh_lines = []
-#     prc_lines =[]
-#     open(file, "r") do f
-#         lines = eachline(f)
-#         for line in lines
-#             entries = split(chomp(line), "|")
-#             if length(entries) == num_cols
-#                 push!(mesh_lines, entries)
-#             elseif length(entries) == num_cols_prc
-#                 push!(prc_lines, entries)
-#             else
-#                 warn("Parsing MTI results - unexpected number of entries per line")
-#                 println(line)
-#             end
-#         end
-#     end
-#     return mesh_lines, prc_lines
-# end
+function parse_result_file(file, num_cols = 8, num_cols_prc = 10000)
+    mesh_lines = []
+    prc_lines =[]
+    open(file, "r") do f
+        lines = eachline(f)
+        for line in lines
+            entries = split(chomp(line), "|")
+            if length(entries) == num_cols
+                push!(mesh_lines, entries)
+            elseif length(entries) == num_cols_prc
+                push!(prc_lines, entries)
+            else
+                warn("Parsing MTI results - unexpected number of entries per line")
+                println(line)
+            end
+        end
+    end
+    return mesh_lines, prc_lines
+end
 
 # function init_MoD_tables(db, append_results = false)
 
@@ -229,6 +190,12 @@ end
 #     end
 # end
 
+#         insert_row!(db, "mti",
+#                     Dict(uid_column =>ml[1],
+#                          :term => ml[2],
+#                          :cui=>cui,
+#                          :score=>ml[4],
+#                          :term_type=> ml[5]), verbose)
 
 # function init_default_MTI_tables(db; append_results = false, uid_column::Symbol = :pmid)
 
@@ -255,7 +222,6 @@ end
 #         db_query(db, "DELETE FROM mti")
 #     end
 # end
-
 # function save_MoD(db, mesh_lines, prc_lines; append_results=false, verbose= false)
 #     init_MoD_tables(db, append_results)
 

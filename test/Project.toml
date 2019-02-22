@@ -1,2 +1,3 @@
 [deps]
 BioMedQuery = "e96904bf-1073-5077-9b57-b0ce0ff5555a"
+MTIWrapper = "0746e27f-2406-533c-aa7f-32ff14289989"

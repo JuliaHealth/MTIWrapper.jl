@@ -8,7 +8,6 @@ export  install_web_api,
 
 using BioMedQuery.Entrez.DB
 using BioMedQuery.DBUtils
-using DataArrays
 
 
 function mti_search_and_save(config, main_func = parse_and_save_default_MTI;

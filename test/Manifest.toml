@@ -181,6 +181,7 @@ uuid = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
 uuid = "56ddb016-857b-54e1-b83d-db4d58db5568"
 
 [[MTIWrapper]]
+deps = ["BioMedQuery"]
 path = "/Users/mrestrep/dropbox_brown/julia_dev/MTIWrapper"
 uuid = "0746e27f-2406-533c-aa7f-32ff14289989"
 version = "0.0.0"

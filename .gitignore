@@ -1,4 +1,5 @@
-test/temp/*
+*test/tmp/*
 *.jl.cov
 *.jl.*.cov
 *.jl.mem
+*test/mti_results*

@@ -1,13 +1,13 @@
 module MTIWrapper
 
-export  install_web_api,
-        generic_batch,
-        abstracts_to_request_file,
-        parse_and_save_default_MTI,
-        parse_and_save_MoD
+# export  install_web_api,
+#         generic_batch,
+#         abstracts_to_request_file,
+#         parse_and_save_default_MTI,
+#         parse_and_save_MoD
 
-using BioMedQuery.Entrez.DB
-using BioMedQuery.DBUtils
+# using BioMedQuery.Entrez.DB
+# using BioMedQuery.DBUtils
 
 
 function mti_search_and_save(config, main_func = parse_and_save_default_MTI;

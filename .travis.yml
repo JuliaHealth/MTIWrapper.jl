@@ -12,18 +12,21 @@ jobs:
     - stage: "Tests"
       os: linux
       julia: 1.1
-      script:         
+      script:
+        - julia --project=test -e 'using Pkg; Pkg.instantiate()'         
         - julia --project=test/ test/runtests.jl
     - # continue
       os: osx
       julia: 1.1
-      script:         
+      script:
+        - julia --project=test -e 'using Pkg; Pkg.instantiate()'         
         - julia --project=test/ test/runtests.jl
     - # continue
       os: linux
       julia: 1.0
-      script:         
-        - julia --project=test/ test/runtests.jl
+      script:  
+        - julia --project=test -e 'using Pkg; Pkg.instantiate()'
+        - julia --project=test test/runtests.jl
     - stage: Semantic Release
       if: branch = master AND type != pull_request
       language: python

@@ -1,4 +1,4 @@
 [deps]
-BioMedQuery = "e96904bf-1073-5077-9b57-b0ce0ff5555a"
 CSV = "336ed68f-0bac-5ca0-87d4-7b16caf5d00b"
 MTIWrapper = "0746e27f-2406-533c-aa7f-32ff14289989"
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"

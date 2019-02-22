@@ -1,0 +1,3 @@
+Command:
+MTI -default_MTI -detail -E
+ERROR MESSAGE: Error - Text file empty

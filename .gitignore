@@ -1,4 +1,4 @@
+test/temp/*
 *.jl.cov
 *.jl.*.cov
 *.jl.mem
-*/SKR_W*

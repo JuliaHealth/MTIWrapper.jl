@@ -2,9 +2,10 @@
 
 Julia wrapper to the Medical Text Indexer Java API
 
-[![Build Status](https://travis-ci.org/bcbi/MTIWrapper.jl.svg?branch=master)](https://travis-ci.org/bcbi/MTIWrapper.jl)
-[![Coverage Status](https://coveralls.io/repos/bcbi/MTIWrapper.jl/badge.svg?branch=master&service=github)](https://coveralls.io/github/bcbi/MTIWrapper.jl?branch=master)
-[![codecov.io](http://codecov.io/github/bcbi/MTIWrapper.jl/coverage.svg?branch=master)](http://codecov.io/github/bcbi/MTIWrapper.jl?branch=master)
+| Travis CI | Coverage | License |
+|-----------|----------|---------|
+|[![Build Status](https://travis-ci.org/bcbi/MTIWrapper.jl.svg?branch=master)](https://travis-ci.org/bcbi/MTIWrapper.jl)|[![codecov.io](http://codecov.io/github/bcbi/MTIWrapper.jl/coverage.svg?branch=master)](http://codecov.io/githubbcbi/MTIWrapper.jl?branch=master)|[![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/bcbi/MTIWrapper.jl/master/LICENSE.md)|
+
 
 
 ## MTI Output

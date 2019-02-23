@@ -8,41 +8,41 @@ Julia wrapper to the Medical Text Indexer Java API
 
 ## Install
 
-```
+```julia
 using Pkg
 Pkg.add("https://github.com/bcbi/MTIWrapper.jl.git")
 ```
 
 ## Usage
 
-```
+```julia
 using MTIWrapper
 ```
 
 ### Install mti Java API
 
-```
+```julia
 mti_dir = "./"
 MTIWrapper.install_web_api(mti_dir)
 ```
 
 ### Compose a file to send to MTI from dataframe
 
-```
+```julia
 input_file = MTIWrapper.abstracts_to_request_file(df, out_file, uid_column = :pmid, abstract_column= :abstract_text)
 ```
 
 
 ### Send a batch query
 
-```
+```julia
 MTIWrapper.mti_batch_query(mti_dir, ENV["NCBI_EMAIL"], ENV["UMLS_USER"], ENV["UMLS_PSSWD"], 
                            input_file, output_file)
 ```
 
 ### Load results into a `DataFrame`
 
-```
+```julia
 header = ["uid","term", "cui", "score", "type", "misc", "location", "path"]
 df = CSV.read(output_file, header = header, datarow=3, delim='|')
 ```

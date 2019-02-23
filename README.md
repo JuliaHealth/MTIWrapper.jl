@@ -10,7 +10,7 @@ Julia wrapper to the Medical Text Indexer Java API
 
 ```
 using Pkg
-Pkg.add()
+Pkg.add("https://github.com/bcbi/MTIWrapper.jl.git")
 ```
 
 ## Usage

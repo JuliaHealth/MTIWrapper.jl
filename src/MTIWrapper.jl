@@ -8,6 +8,8 @@ function install_web_api(root_dir; api_version="SKR_Web_API_V2_3")
 
     cwd = dirname(@__FILE__)
 
+    @info "MTIWrapper: Current Directory $cwd"
+
     api_dir = "$root_dir/$api_version"
 
     if !isdir(root_dir)
@@ -44,6 +46,8 @@ Send a batch query to MTI. Use function `abstracts_to_request_file` to generate 
 """
 function mti_batch_query(mti_java_dir, email, username, password, in_file, out_file)
     cwd = dirname(@__FILE__)
+
+    @info "MTIWrapper: Current Directory $cwd"
     run(`$cwd/generic_batch.sh $mti_java_dir $email $username $password $in_file $out_file`)
 end
 

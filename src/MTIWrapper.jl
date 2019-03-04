@@ -31,6 +31,8 @@ function install_web_api(root_dir; api_version="SKR_Web_API_V2_3")
     # We have modified our class to pass credentials as an input - we'll put it in examples folder
     # so that MTI default compilation scripts work
     cp("$cwd/GenericBatchCustom.java", "$api_dir/examples/GenericBatchCustom.java") 
+    cp("$cwd/generic_batch.sh", "$root_dir/generic_batch.sh") 
+
     # compile
     # cd("SKR_Web_API_V2_3")
     run(`chmod +x $api_dir/compile.sh $api_dir/run.sh $api_dir/build.sh`)
@@ -45,10 +47,8 @@ end
 Send a batch query to MTI. Use function `abstracts_to_request_file` to generate `in_file`
 """
 function mti_batch_query(mti_java_dir, email, username, password, in_file, out_file)
-    cwd = dirname(@__FILE__)
 
-    @info "MTIWrapper: Current Directory $cwd"
-    run(`$cwd/generic_batch.sh $mti_java_dir $email $username $password $in_file $out_file`)
+    run(`$mti_java_dir/generic_batch.sh $mti_java_dir $email $username $password $in_file $out_file`)
 end
 
 

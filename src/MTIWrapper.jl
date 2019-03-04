@@ -58,15 +58,14 @@ The format is:
 UI - pmid
 AB - abstract_text
 """
-function abstracts_to_request_file(df, out_file; uid_column::Symbol = :pmid, abstract_column::Symbol = :abstract_text)
+function abstracts_to_request_file(df, out_file; uid_column::Symbol = :pmid, abstract_column::Symbol = :abstract)
 
     #call MTI
     open(out_file, "w") do file
 
-        # for i=1:size(abs_sel)[1]
-        for row in df
+        for row in eachrow(df)
             uid = row[uid_column]
-            abstract_text = abs_sel[abstract_column]
+            abstract_text = row[abstract_column]
 
             if ismissing(abstract_text)
                 println( "Skipping empty abstract for uid: ", uid)
@@ -74,9 +73,50 @@ function abstracts_to_request_file(df, out_file; uid_column::Symbol = :pmid, abs
             end
 
             # convert to ascii - all unicode caracters to " "
-            abstract_ascii = replace(abstract_text, r"[^\u0000-\u007F]"=>" ")
+            abstract_ascii = replace(abstract_text, r"[^\u0000-\u007F]"=>"")
             write(file, "UI  - $uid \n")
             write(file, "AB  - $abstract_ascii \n \n")
+        end
+    end
+
+end
+
+"""
+    abs_to_request_file()
+
+Write all abstracts in a dataframe, to a file to be used for MTI batch query.
+The format is:
+
+UI - pmid
+AB - abstract_text
+"""
+function title_abstracts_to_request_file(df, out_file; uid_column::Symbol = :pmid, 
+                                         title_column::Symbol = :title, abstract_column::Symbol = :abstract)
+
+    #call MTI
+    open(out_file, "w") do file
+
+        for row in eachrow(df)
+            uid = row[uid_column]
+            abstract_text = row[abstract_column]
+            title_text = row[title_column]
+
+            write(file, "UI  - $uid \n")
+
+            if !ismissing(title_text) 
+                # convert to ascii - all unicode caracters to " "
+                title_ascii = replace(title_text, r"[^\x00-\x7F]+"=>"")
+                write(file, "TI  - $title_ascii \n")
+            end
+                
+           if !ismissing(abstract_text)
+                # convert to ascii - all unicode caracters to " "
+                abstract_ascii = replace(abstract_text, r"[^\x00-\x7F]+"=>"")
+                abstract_ascii = replace(abstract_ascii, "Abstract: "=>"")
+                write(file, "AB  - $abstract_ascii \n \n")
+            end
+
+           
         end
     end
 

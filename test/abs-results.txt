@@ -1,0 +1,30 @@
+Command:
+MTI -default_MTI -detail -E
+2731341 |Male|C0086582|3470|CT|Antonio ML Rule Forced||MM;RC
+2731341 |Humans|C0086418|3470|CT|Antonio ML Rule Forced;CT Text Lookup: patient;CT Text Lookup: patients|AB|MM;RC
+2731341 |Pilot Projects|C0031928|190|MH|Forced Lookup:pilot study|AB|MM
+2731341 |Mobile Applications|C3658310|2470|MH|RtM via: Mobile Applications|TX|MM;RC
+2731341 |Cell Phone|C1136359|473|MH|||RC
+2731341 |Telemedicine|C0162648|344|MH|||RC
+2732268 |Humans|C0086418|1612|CT|Antonio ML Rule Forced;CT Text Lookup: patient|AB|MM;RC
+2732268 |Software|C0037585|612|MH|RtM via: Software Tools;RtM via: Computer software;RtM via: Application Adapter|TX|MM;RC
+2732268 |Decision Support Systems, Clinical|C0525070|268|MH|RtM via: Decision Support Systems, Clinical|TX|MM;RC
+2732268 |Systematized Nomenclature of Medicine|C1136257|234|MH|RtM via: Systematized Nomenclature of Medicine Clinical Terms|TX|MM;RC
+2732268 |Electronic Health Records|C2362543|172|MH|||RC
+2732268 |Logical Observation Identifiers Names and Codes|C1136323|115|MH|RtM via: Logical Observation Identifiers Names and Codes;RtM via: Patient Safety LOINC Clinical Class|TX|MM
+2732268 |Computer Security|C0085097|79|MH|RtM via: Data Encryption|TX|MM
+2732268 |Hospitals|C0019994|20|MH|RtM via: Hospitals|TX|MM
+2732268 |Patient Safety|C1113679|14|MH|RtM via: patient safety|TX|MM
+2732301 |Humans|C0086418|2309|CT|Antonio ML Rule Forced;CT Text Lookup: human;CT Text Lookup: patient;CT Text Lookup: patients|AB|MM;RC
+2732301 |Retrospective Studies|C0035363|380|MH|RtM via: Retrospective Studies;Forced Lookup:retrospective|TX;AB|MM;RC
+2732301 |Electronic Health Records|C2362543|1309|MH|RtM via: Electronic Health Records|TX|MM;RC
+2732301 |Software|C0037585|402|MH|RtM via: Computer software|TX|MM;RC
+2732301 |Health Resources|C0018741|116|MH|RtM via: Resources|TX|MM;RC
+2732301 |Workflow|C1710679|86|MH|RtM via: Workflow|TX|MM
+2732301 |Kenya|C0022558|15|MH|RtM via: Kenya|TX|MM
+2732301 |Mozambique|C0026655|15|MH|RtM via: Mozambique|TX|MM
+2732301 |Haiti|C0018510|0|MH|RtM via: Haiti|TX|MM
+2732265 |Humans|C0086418|1617|CT|Antonio ML Rule Forced||MM;RC
+2732265 |Immunization|C0020971|617|MH|RtM via: Immunization|TX|MM;RC
+2732265 |Vaccination|C0042196|447|MH|RtM via: Vaccination|TX|MM;RC
+2732265 |Veterans|C0042610|42|MH|RtM via: Veterans|TX|MM;RC

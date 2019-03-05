@@ -6,9 +6,11 @@ Installs MTI Java jar to specified location
 """
 function install_web_api(root_dir; api_version="SKR_Web_API_V2_3")
 
-    cwd = dirname(@__FILE__)
+    
+    module_dir = dirname(@__FILE__)
+    pwd = pwd()
 
-    @info "MTIWrapper: Current Directory $cwd"
+    @info "MTIWrapper: Current Directory $module_dir"
 
     api_dir = "$root_dir/$api_version"
 
@@ -30,15 +32,16 @@ function install_web_api(root_dir; api_version="SKR_Web_API_V2_3")
 
     # We have modified our class to pass credentials as an input - we'll put it in examples folder
     # so that MTI default compilation scripts work
-    cp("$cwd/GenericBatchCustom.java", "$api_dir/examples/GenericBatchCustom.java") 
-    cp("$cwd/generic_batch.sh", "$root_dir/generic_batch.sh") 
+    println(ls(module_dir))
+    cp("$module_dir/GenericBatchCustom.java", "$api_dir/examples/GenericBatchCustom.java") 
+    cp("$module_dir/generic_batch.sh", "$root_dir/generic_batch.sh") 
 
     # compile
     # cd("SKR_Web_API_V2_3")
     run(`chmod +x $api_dir/compile.sh $api_dir/run.sh $api_dir/build.sh`)
     run(`$api_dir/compile.sh $api_dir/examples/GenericBatchCustom.java`)
 
-    cd(cwd)
+    cd(pwd)
 
 end
 

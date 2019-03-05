@@ -8,7 +8,7 @@ function install_web_api(root_dir; api_version="SKR_Web_API_V2_3")
 
     
     module_dir = dirname(@__FILE__)
-    # curr_dir = Base.pwd()
+    curr_dir = Base.pwd()
 
     @info "MTIWrapper: Current Directory $module_dir"
 
@@ -21,7 +21,6 @@ function install_web_api(root_dir; api_version="SKR_Web_API_V2_3")
            rm(api_dir, recursive = true, force = true)
            rm("$api_dir.jar")
         end
-        # mkdir(root_dir)
     end
 
     println("Dowloading fresh copy of sources")
@@ -32,21 +31,16 @@ function install_web_api(root_dir; api_version="SKR_Web_API_V2_3")
 
     # We have modified our class to pass credentials as an input - we'll put it in examples folder
     # so that MTI default compilation scripts work
-    println(readdir(module_dir))
-    println(readdir(api_dir))
-    println("$module_dir/GenericBatchCustom.java")
-    println("$api_dir/examples/GenericBatchCustom.java")
-
-    cp("$module_dir/GenericBatchCustom.java", "$api_dir/examples/") 
-    cp("$module_dir/generic_batch.sh", "$root_dir") 
+    cp("$module_dir/GenericBatchCustom.java", "$api_dir/examples/GenericBatchCustom.java") 
+    cp("$module_dir/generic_batch.sh", "$root_dir/generic_batch.sh") 
 
     # compile
     # cd("SKR_Web_API_V2_3")
     run(`chmod +x $api_dir/compile.sh $api_dir/run.sh $api_dir/build.sh`)
     run(`$api_dir/compile.sh $api_dir/examples/GenericBatchCustom.java`)
 
-    # cd(curr_dir)
-
+    cd(curr_dir)
+    println(pwd())
 
 end
 

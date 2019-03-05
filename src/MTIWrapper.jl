@@ -8,7 +8,7 @@ function install_web_api(root_dir; api_version="SKR_Web_API_V2_3")
 
     
     module_dir = dirname(@__FILE__)
-    curr_dir = pwd()
+    # curr_dir = pwd()
 
     @info "MTIWrapper: Current Directory $module_dir"
 
@@ -41,7 +41,7 @@ function install_web_api(root_dir; api_version="SKR_Web_API_V2_3")
     run(`chmod +x $api_dir/compile.sh $api_dir/run.sh $api_dir/build.sh`)
     run(`$api_dir/compile.sh $api_dir/examples/GenericBatchCustom.java`)
 
-    cd(curr_dir)
+    # cd(curr_dir)
 
 end
 

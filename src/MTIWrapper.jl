@@ -31,8 +31,8 @@ function install_web_api(root_dir; api_version="SKR_Web_API_V2_3")
 
     # We have modified our class to pass credentials as an input - we'll put it in examples folder
     # so that MTI default compilation scripts work
-    cp("$module_dir/GenericBatchCustom.java", "$api_dir/examples/GenericBatchCustom.java") 
-    cp("$module_dir/generic_batch.sh", "$root_dir/generic_batch.sh") 
+    cp("$module_dir/GenericBatchCustom.java", "$api_dir/examples/GenericBatchCustom.java", force=true) 
+    cp("$module_dir/generic_batch.sh", "$root_dir/generic_batch.sh", force=true) 
 
     # compile
     # cd("SKR_Web_API_V2_3")

@@ -15,9 +15,6 @@ jobs:
     - # continue
       os: osx
       julia: 1.1
-    - # continue
-      os: linux
-      julia: 1.0
     - stage: Semantic Release
       if: branch = master AND type != pull_request
       language: python
